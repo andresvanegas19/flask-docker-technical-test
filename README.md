@@ -17,7 +17,22 @@ para instalar la aplicacion es necesario correr los siguientes pasos
 ---
 # Construido con 🛠️
 se usa las siguientes tecnologias.
+
+marshmallow
+validate, serialize, and deserialize data.
 ---
+### structure
+```
+    __init__.py
+    app.py          # this file contains your app and routes
+    resources/
+        __init__.py
+        foo.py      # contains logic for /Foo
+        bar.py      # contains logic for /Bar
+    common/
+        __init__.py
+        util.py     # just some common infrastructure
+```
 # end-points
 
 

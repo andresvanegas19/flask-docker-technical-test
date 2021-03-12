@@ -8,7 +8,7 @@ RUN mkdir /api
 ADD requirements.txt /api/
 RUN pip install -r --no-cache-dir requirements.txt
 
-COPY . /api
+COPY ./src /api
 
 WORKDIR /api
 
