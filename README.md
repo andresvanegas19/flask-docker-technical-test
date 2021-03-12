@@ -8,6 +8,15 @@ pruebas unitarias y demás
 componentes
 artefactos de software
 
+
+Pre-requisitos 📋]
+
+### instalar
+para instalar la aplicacion es necesario correr los siguientes pasos
+
+---
+# Construido con 🛠️
+se usa las siguientes tecnologias.
 ---
 # end-points
 
@@ -16,14 +25,3 @@ para ver que endpoints tiene
 
 
 ![](https://i.imgur.com/cN5lRqY.png)
----
-
-
----
-se usa las siguientes tecnologias.
----
-
-### instalar
-para instalar la aplicacion es necesario correr los siguientes pasos
-
-
