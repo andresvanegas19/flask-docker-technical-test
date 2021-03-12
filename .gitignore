@@ -21,3 +21,6 @@ venv.bak/
 
 # notes and deleting
 test-ap
+
+# keys
+src/*.json

@@ -10,6 +10,7 @@ artefactos de software
 
 
 Pre-requisitos 📋]
+Puedes ver los requisitos de que se usan para desarrollar este proyecto
 
 ### instalar
 para instalar la aplicacion es necesario correr los siguientes pasos
@@ -41,3 +42,7 @@ para ver que endpoints tiens
 
 
 # testing
+for running testing in the file use
+```
+python -m  src.test.test_largest_palindrome
+```
