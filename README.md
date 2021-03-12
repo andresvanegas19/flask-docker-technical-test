@@ -34,9 +34,10 @@ validate, serialize, and deserialize data.
         util.py     # just some common infrastructure
 ```
 # end-points
-
-
-para ver que endpoints tiene
-
+para ver que endpoints tiens
 
 ![](https://i.imgur.com/cN5lRqY.png)
+
+
+
+# testing
