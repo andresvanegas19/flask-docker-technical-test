@@ -37,7 +37,12 @@ def largest_palindrome(phrase):
         for start_n in range(lenght - reverse_n + 1):
 
             # var for check the end of the string
-            finish = start_n < 1 if None else start_n - 1
+            # this skip one itereation
+            # finish = start_n > 1 if None else start_n - 1
+            if start_n < 1:
+                finish = None
+            else:
+                finish = start_n - 1
 
             # the -1 revert the list compare the string normal with the revert string
             normal = phrase[start_n: start_n + reverse_n]
