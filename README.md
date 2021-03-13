@@ -1,6 +1,7 @@
 # API REST
  un servicio que sea capaz de reconocer el palíndromo más largo dentro de una cadena de texto
 
+las instrucciones de compilación, instalación, despliegue y uso de la API. También se deberá incluir la documentación de la API REST, endpoints, payloads y responses. 
 
 API REST
 servicios de integración

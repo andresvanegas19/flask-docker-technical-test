@@ -8,6 +8,12 @@ RUN mkdir /api
 ADD requirements.txt /api/
 RUN pip install -r --no-cache-dir requirements.txt
 
+COPY ./src/fbAdminConfig.json /api/fbAdminConfig.json
+COPY ./src/fbconfig.json /api/fbconfig.json
+COPY ./src/.env /api/.env
+
+RUN source /api/.env
+
 COPY ./src /api
 
 WORKDIR /api
