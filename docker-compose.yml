@@ -9,6 +9,8 @@ services:
     command: init.sh
     volumes:
       - .:/api
+    ports:
+      [5000:5000]
     env_file:
       - ./src/.env
     # depends_on:

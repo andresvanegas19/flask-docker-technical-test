@@ -16,6 +16,10 @@ artefactos de software
 docker-compose up --build -d
 ```
 
+if the container doesnt run please execute this commands
+```
+docker-compose logs -t -f --tail 10
+```
 requests==2.11.1
 
 # Pre-requisitos 📋]
@@ -64,3 +68,7 @@ for running testing in the file use
 ```
 python -m  src.test.test_largest_palindrome
 ```
+
+
+[![Run on Google Cloud](https://storage.googleapis.com/cloudrun/button.svg)](https://console.cloud.google.com/cloudshell/editor?shellonly=true&cloudshell_image=gcr.io/cloudrun/button&cloudshell_git_repo=[YOUR_HTTP_GIT_URL])
+

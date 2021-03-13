@@ -3,13 +3,15 @@
 from flask import Flask, request, Blueprint
 from firebase_admin import credentials, auth
 import firebase_admin
-# import pyrebase
+import pyrebase
 import json
 from os import environ
 import redis
 from flask_restful import Api, Resource, url_for
 from flask_cors import CORS
 from .common.util import largest_palindrome
+from requests.packages import urllib3
+
 
 #  View function mapping is overwriting an existing endpoint function: wrap
 from functools import wraps
@@ -17,17 +19,19 @@ from functools import wraps
 
 app = Flask(__name__)
 # configurate the CORS
-CORS(app)
-cors = CORS(app, resource={
-    r"/*": {
-        "origins": "*"
-    }
-})
+CORS(app, supports_credentials=True)
+# CORS(app)
+# cors = CORS(app, resource={
+#     r"/*": {
+#         "origins": "*"
+#     }
+# })
 
 # connect to firebase
 cred = credentials.Certificate("./src/fbAdminConfig.json")
 firebase = firebase_admin.initialize_app(cred)
-# pb = pyrebase.initialize_app(json.load(open('./src/fbconfig.json')))
+pb = pyrebase.initialize_app(json.load(open('./src/fbconfig.json')))
+
 
 # connect to redis
 host = environ.get('HOST')
@@ -127,17 +131,17 @@ def signup():
         return {"Message": "Error creating user"}, 400
 
 
-# @app.route('/api/token', methods=["GET"])
-# def token():
-#     email = request.form.get('email')
-#     password = request.form.get('password')
-#     try:
-#         user = pb.auth().sign_in_with_email_and_password(email, password)
-#         jwt = user['idToken']
-#         return {'token': jwt}, 200
-#     except Exception as e:
-#         print(e)
-#         return {"Message": "There was an error"}, 400
+@app.route('/api/token', methods=["GET"])
+def token():
+    email = request.form.get('email')
+    password = request.form.get('password')
+    try:
+        user = pb.auth().sign_in_with_email_and_password(email, password)
+        jwt = user['idToken']
+        return {'token': jwt}, 200
+    except Exception as e:
+        print(e)
+        return {"Message": "There was an error"}, 400
 
 
 if __name__ == '__main__':

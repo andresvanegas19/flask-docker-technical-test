@@ -23,4 +23,4 @@ COPY ./src /api
 
 ENTRYPOINT [ "bash" ]
 
-CMD exec gunicorn --bind :$PORT main_v1:app --workers 1 --threads 1 --timeout 60
+# CMD exec gunicorn --bind :$PORT main_v1:app --workers 1 --threads 1 --timeout 60
