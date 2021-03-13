@@ -7,3 +7,4 @@ flask_cors
 pyrebase
 PyCryptodome
 jwt
+flask_swagger_ui

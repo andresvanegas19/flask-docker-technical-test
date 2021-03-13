@@ -10,7 +10,8 @@ import redis
 from flask_restful import Api, Resource, url_for
 from flask_cors import CORS
 from .common.util import largest_palindrome
-from requests.packages import urllib3
+# from requests.packages import urllib3
+from flask_swagger_ui import get_swaggerui_blueprint
 
 
 #  View function mapping is overwriting an existing endpoint function: wrap
@@ -142,6 +143,10 @@ def token():
     except Exception as e:
         print(e)
         return {"Message": "There was an error"}, 400
+
+@app.errorhandler(404)
+def not_found(e):
+  return  {"Message": "Not found, please go to the home"}, 404
 
 
 if __name__ == '__main__':

@@ -68,7 +68,18 @@ for running testing in the file use
 ```
 python -m  src.test.test_largest_palindrome
 ```
+# deployment
+
+For fast deployment use the following botton
+but you need into the console paste the env variables and the firebase files
 
 
 [![Run on Google Cloud](https://storage.googleapis.com/cloudrun/button.svg)](https://console.cloud.google.com/cloudshell/editor?shellonly=true&cloudshell_image=gcr.io/cloudrun/button&cloudshell_git_repo=github.com/andresvanegas19/flask-docker-technical-test)
+
+
+if you use the CLI it will be more esily
+run this:
+```
+gcloud builds submit --tag gcr.io/docker-tecninca/gcp-api
+```
 
