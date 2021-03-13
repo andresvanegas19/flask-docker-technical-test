@@ -1,23 +1,26 @@
-# Use the slim for a small docker
-FROM python:3.8-slim
+FROM python:3.7-stretch
+
+RUN apt-get update -y
+RUN apt-get install -y python-pip python-dev build-essential
 
 # to set the working for the api
 RUN mkdir /api
 
-# add independecies and instilling
-ADD requirements.txt /api/
-RUN pip install -r --no-cache-dir requirements.txt
+ADD . /api
+WORKDIR /api
+RUN pip install --no-cache-dir -r  requirements.txt
 
-COPY ./src/fbAdminConfig.json /api/fbAdminConfig.json
-COPY ./src/fbconfig.json /api/fbconfig.json
-COPY ./src/.env /api/.env
+# WORKDIR /api
+# COPY ./src/fbAdminConfig.json /api/fbAdminConfig.json
+# COPY ./src/fbconfig.json /api/fbconfig.json
+COPY ./src/.env .env
+EXPOSE 5000
+ENV PORT 5000
 
-RUN source /api/.env
+# RUN source .env
 
 COPY ./src /api
 
-WORKDIR /api
+ENTRYPOINT [ "bash" ]
 
-# CMD python manage.py makemigrations \
-# && python manage.py migrate && python manage.py runserver 0.0.0.0:8000
-
+CMD exec gunicorn --bind :$PORT main_v1:app --workers 1 --threads 1 --timeout 60

@@ -3,7 +3,7 @@
 from flask import Flask, request, Blueprint
 from firebase_admin import credentials, auth
 import firebase_admin
-import pyrebase
+# import pyrebase
 import json
 from os import environ
 import redis
@@ -25,13 +25,13 @@ cors = CORS(app, resource={
 })
 
 # connect to firebase
-cred = credentials.Certificate("./fbAdminConfig.json")
+cred = credentials.Certificate("./src/fbAdminConfig.json")
 firebase = firebase_admin.initialize_app(cred)
-pb = pyrebase.initialize_app(json.load(open('fbconfig.json')))
+# pb = pyrebase.initialize_app(json.load(open('./src/fbconfig.json')))
 
 # connect to redis
 host = environ.get('HOST')
-port = environ.get('PORT')
+port = environ.get('PORT_DB')
 password = environ.get('PASSWORD')
 r = redis.Redis(host=host, port=port, db=0, password=password)
 
@@ -127,17 +127,17 @@ def signup():
         return {"Message": "Error creating user"}, 400
 
 
-@app.route('/api/token', methods=["GET"])
-def token():
-    email = request.form.get('email')
-    password = request.form.get('password')
-    try:
-        user = pb.auth().sign_in_with_email_and_password(email, password)
-        jwt = user['idToken']
-        return {'token': jwt}, 200
-    except Exception as e:
-        print(e)
-        return {"Message": "There was an error"}, 400
+# @app.route('/api/token', methods=["GET"])
+# def token():
+#     email = request.form.get('email')
+#     password = request.form.get('password')
+#     try:
+#         user = pb.auth().sign_in_with_email_and_password(email, password)
+#         jwt = user['idToken']
+#         return {'token': jwt}, 200
+#     except Exception as e:
+#         print(e)
+#         return {"Message": "There was an error"}, 400
 
 
 if __name__ == '__main__':
