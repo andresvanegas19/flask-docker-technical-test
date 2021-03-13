@@ -40,6 +40,17 @@ port = environ.get('PORT_DB')
 password = environ.get('PASSWORD')
 r = redis.Redis(host=host, port=port, db=0, password=password)
 
+# init the docs
+SWAGGER_URL = '/docs'
+API_URL = '/static/swagger.json'
+SWAGGERUI_BLUEPRINT = get_swaggerui_blueprint(
+    SWAGGER_URL,
+    API_URL,
+    config={
+        'app_name': "Seans-Python-Flask-REST-Boilerplate"
+    }
+)
+app.register_blueprint(SWAGGERUI_BLUEPRINT, url_prefix=SWAGGER_URL)
 
 def check_token(f):
     ''' This function is for validated the information of the each request '''

@@ -1,0 +1,15 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "description": "a service that is capable of recognizing the longest palindrome within a text string instructions for compilation, installation, deployment and use of the API. API REST documentation, endpoints, payloads and responses should also be included. API REST integration services unit testing and other software artifact components",
+    "version": "1.0.0",
+    "title": "flask docker technical test",
+    "contact": {
+      "email": "andressantiagore@gmail.com"
+    },
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  }
+}
