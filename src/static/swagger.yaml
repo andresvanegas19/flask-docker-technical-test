@@ -1,0 +1,190 @@
+swagger: "2.0"
+info:
+  description: "This project is a service that is able to recognize the longest palindrome within a text string, this will have security protocols using TOKENS. It will also have a cache system where it will show the last 10 palindrome words that have been searched by the api."
+  version: "1.0.0"
+  title: "flask docker technical test"
+  termsOfService: "http://swagger.io/terms/"
+  contact:
+    email: "andressantiagore@gmail.com"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "gcp-api-fe7w7wczuq-uc.a.run.app"
+
+tags:
+  - name: "auth"
+    description: "authentication to secure enpoints"
+    externalDocs:
+      description: "Find out more"
+      url: "cutt.ly/xzGeVmw"
+
+  - name: "palindrome"
+    description: "these endpoints are for viewing the operation of the application"
+    externalDocs:
+      description: "Find out more"
+      url: "cutt.ly/xzGeVmw"
+
+securityDefinitions:
+  auth:
+    type: "oauth2"
+    authorizationUrl: "gcp-api-fe7w7wczuq-uc.a.run.app/api/signup"
+    flow: "implicit"
+    scopes:
+      read:output: "read all tghe output"
+
+schemes:
+  - "https"
+paths:
+  /api/signup:
+    get:
+      tags:
+        - "auth"
+      summary: "generate token"
+      description: "An endpoint where you enter your email and password to generate a token to use the application."
+      operationId: "addUser"
+      consumes:
+        - "application/json"
+      parameters:
+        - name: auth
+          in: header
+          description: an authorization header
+          required: true
+          type: string
+        - in: "body"
+          name: "body"
+          description: "validate user"
+          required: true
+          schema:
+            $ref: "#/definitions/Auth_validate"
+      responses:
+        "400":
+          description: "Missing emai or password"
+        "401":
+          description: "Error creating user"
+      security:
+        - auth:
+            - "read:output"
+
+  /api/token:
+    get:
+      tags:
+        - "auth"
+      summary: "see the token"
+      description: "validated the token"
+      operationId: "resquesToken"
+      consumes:
+        - "application/json"
+      parameters:
+        - name: auth
+          in: header
+          description: an authorization header
+          required: true
+          type: string
+      responses:
+        "400":
+          description: "Missing emai or password"
+        "401":
+          description: "Error creating user"
+      security:
+        - auth:
+            - "read:output"
+
+  /api/history:
+    get:
+      tags:
+        - "palindrome"
+      summary: "see examples of palindrome"
+      description: "see the last 10 words that the api found palindrome"
+      operationId: "requestHistory"
+      consumes:
+        - "application/json"
+      parameters:
+        - name: auth
+          in: header
+          description: an authorization header
+          required: true
+          type: string
+      responses:
+        "200":
+          description: "succesed response"
+          schema:
+            $ref: "#/definitions/History"
+      security:
+        - auth:
+            - "read:output"
+
+  /api/palindromo:
+    post:
+      tags:
+        - "palindrome"
+      summary: "validate if is a palindrome"
+      description: ""
+      operationId: "getPalindrome"
+      consumes:
+        - "application/json"
+      parameters:
+        - name: auth
+          in: header
+          description: "an authorization header"
+          required: true
+          type: string
+        - in: "body"
+          name: "body"
+          description: "request for palindrome word"
+          required: true
+          schema:
+            $ref: "#/definitions/Palindrome_get"
+      responses:
+        "200":
+          description: "Success response"
+          schema:
+            $ref: "#/definitions/Palindrome"
+        "400":
+          description: "Missing emai or password"
+        "401":
+          description: "Error creating user"
+      security:
+        - auth:
+            - "read:output"
+
+definitions:
+  Palindrome_get:
+    type: "object"
+    properties:
+      palindrome:
+        type: "string"
+  Palindrome:
+    type: "object"
+    properties:
+      palindrome_word:
+        type: "string"
+        example: "ama"
+      largest_palindrome_word:
+        type: "string"
+        example: "ama"
+  Auth_validate:
+    type: "object"
+    properties:
+      Message:
+        type: "string"
+        example: "Successfully create user {TOKEN}"
+  History:
+    type: "object"
+    properties:
+      Message:
+        example:
+          ["palindrome word pama => ama", "palindrome word pesep => pesep"]
+  ApiResponse:
+    type: "object"
+    properties:
+      code:
+        type: "integer"
+        format: "int32"
+      type:
+        type: "string"
+      message:
+        type: "string"
+
+externalDocs:
+  description: "Find out more about Swagger"
+  url: "https://github.com/andresvanegas19/flask-docker-technical-test"

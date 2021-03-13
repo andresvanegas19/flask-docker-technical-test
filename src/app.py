@@ -42,7 +42,7 @@ r = redis.Redis(host=host, port=port, db=0, password=password)
 
 # init the docs
 SWAGGER_URL = '/docs'
-API_URL = '/static/swagger.json'
+API_URL = '/static/swagger.yaml'
 SWAGGERUI_BLUEPRINT = get_swaggerui_blueprint(
     SWAGGER_URL,
     API_URL,
@@ -140,7 +140,7 @@ def signup():
         }, 200
     except Exception as e:
         print(e)
-        return {"Message": "Error creating user"}, 400
+        return {"Message": "Error creating user"}, 401
 
 
 @app.route('/api/token', methods=["GET"])

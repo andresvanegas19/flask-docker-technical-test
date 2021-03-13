@@ -9,9 +9,11 @@ un palíndromo es una cadena que al ser invertida es exactamente igual a la cade
 ```
 
 # TOMAR EN CUENTA
+
 Todo el codigo y la documentacion esta escrita en ingles por si es llegado a usar y tener mayor alcance del proyecto.
 
 ### requerimientos para el proyeto
+
 Para poder ejecutar el proyecto es necesario que ya tenga instalado los siguientes requerimientos
 
 - Docker
@@ -20,40 +22,48 @@ Para poder ejecutar el proyecto es necesario que ya tenga instalado los siguient
 - git
 
 # installation
+
 Para poder corre el proyecto en local es necesario varios pasos.
+
 1. Empieza clonando el proyecto.
+
 ```
 git clone https://github.com/andresvanegas19/flask-docker-technical-test.git
 ```
 
 2. Es necesario que se tenga una cuenta google y se registre en los servicios de firebase.
 3. Crear un proyecto web, y despues de esto ir a configurancion del proyecto para copiar el siguiente json y guardarlo en un arhivo llamado fbconfig.json
-![](https://i.imgur.com/WnZeTjf.png)
+   ![](https://i.imgur.com/WnZeTjf.png)
 4. Luego ir a la parte de Configuración del proyecto para generar una llave y con esta se pueda comunicar y validar los tokens de los usuarios, al generar la llave move el archivo a src y renombrarlo fbAdminConfig.json
-![](https://i.imgur.com/8cZetFq.png)
+   ![](https://i.imgur.com/8cZetFq.png)
 
 Los pasos anteriores eran para la autentificacion del usuario.
-
 
 5. Para que haya un buen funcionamiento del enpoint /history (ver mas adelante parte de enpoints) es necesario crear un db de redis para usarlo como db y mostrar los ultimos resultados. Para crear un db irse a la pagina https://redislabs.com donde ofreceran un db con un espacio de 6MB gratis.
 
 ### DOCS - redis python
+
 [redis](https://redislabs.com/lp/python-redis/)
 
 6. ya al crear un db de redis se debe setear las siguientes variables de entorno en un archivo .env con la informacion dada de redislabs
+
 ```
 export HOST=
 export PORT_DB=
 export PASSWORD=
 
 ```
+
 ![](https://i.imgur.com/J1vuMLe.png)
 
 7. ya al seguir estos pasos ahora puede ejecutar el siguiente comando para correr un contenedor en local y poder probar la API REST
+
 ```
 docker-compose up --build -d api
 ```
+
 si el contenedor no corre puede ver cuales son los problemas que estan ocurriendo ejecutando el siguiente comando
+
 ```
 docker-compose logs -t -f --tail 10
 ```
@@ -90,9 +100,10 @@ flask_swagger_ui
 
 Son usadas estas tecnologias porque se quiere construir una api no tan robusta pero que sea persistente.
 
-
 # end-points
+
 Los puntos de entrada de la aplicaion seran los siguientes
+
 ```
 GET    /api/signup
 GET    /api/token
@@ -101,13 +112,11 @@ GET    /
 GET    /api/history
 POST   /api/palindromo
 ```
+
 ## Descripcion
 
-## /api/singup
-Este enpoint se puede probar ejecutando 
-```
-```
-
+para mas informacion puede saber en /docs
+![](https://i.imgur.com/TN97pn2.png)
 
 # testing
 
@@ -116,14 +125,15 @@ El siguinte proyecto corrio los siguientes test para validar el buen funcionamie
 ```
 python -m  src.test.test_largest_palindrome
 ```
+
 # deployment
 
 para facil deployment en GCP seguir los pasos del inicio y ir al siguiente link
 
 [![Run on Google Cloud](https://storage.googleapis.com/cloudrun/button.svg)](https://console.cloud.google.com/cloudshell/editor?shellonly=true&cloudshell_image=gcr.io/cloudrun/button&cloudshell_git_repo=github.com/andresvanegas19/flask-docker-technical-test)
 
-
 Si tiene gcloud CLI ejecutar el siguiente comando y luego ir a cloud run y ejecutar el contenedor
+
 ```
 gcloud builds submit --tag gcr.io/[id-proyecto]/gcp-api
 ```
