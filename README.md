@@ -1,6 +1,6 @@
 # API REST - Docker flask
 
-Este proyecto es un servicio que sea capaz de reconocer el palíndromo más largo dentro de una cadena de texto, este tendra protocolos de seguridad utilizando TOKENS. Ademas tenga un sistema de cache donde muestre las utimas 10 palabras palindrome que se han buscado por la api.
+Este proyecto es un servicio que sea capaz de reconocer el palíndromo más largo dentro de una cadena de texto, este tendra protocolos de seguridad utilizando TOKENS. Ademas tiene un sistema de cache donde muestre las utimas 10 palabras palindrome que se han buscado por la api.
 
 un palíndromo es una cadena que al ser invertida es exactamente igual a la cadena original.
 
@@ -10,7 +10,7 @@ un palíndromo es una cadena que al ser invertida es exactamente igual a la cade
 
 # TOMAR EN CUENTA
 
-Todo el codigo y la documentacion esta escrita en ingles por si es llegado a usar y tener mayor alcance del proyecto.
+Todo el codigo y la documentacion esta escrita en ingles por si es llegado a usar y tener mayor alcance del proyecto, al igual que esta misma documentacion. (README_eng.md)
 
 ### requerimientos para el proyeto
 
@@ -75,28 +75,33 @@ docker-compose logs -t -f --tail 10
     Dockerfile          # Para crear una imagen del contenedor
     docker-compose.yml  # Instrucciones de ejecucion del contenedor
     app.py              # Contiene el inicio de la aplicacion
+    test/               # Van a traer todas las pruebas que se hicieron en la aplicación.
+        ...
     resources/
         __init__.py
-        foo.py          # contains logic for /Foo
-        bar.py          # contains logic for /Bar
+        auth.py          # contains logic for /api/tokens /api/signup
+        ...
     common/
         __init__.py
-        util.py         # Funciones que ayudaran a la estructura
+        find_pal.py         # Funciones que ayudaran a la estructura
+
+    ...
 ```
+
 
 # Construido con 🛠️
 
 se usa las siguientes tecnologias.
 
-Flask
-firebase_admin
-flask_restful
-redis
-flask_cors
-pyrebase
-PyCryptodome
-jwt
-flask_swagger_ui
+- [ ] Flask
+- [ ] firebase_admin
+- [ ] flask_restful
+- [ ] redis
+- [ ] flask_cors
+- [ ] pyrebase
+- [ ] PyCryptodome
+- [ ] jwt
+- [ ] flask_swagger_ui
 
 Son usadas estas tecnologias porque se quiere construir una api no tan robusta pero que sea persistente.
 

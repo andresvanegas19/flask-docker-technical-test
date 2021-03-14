@@ -3,7 +3,6 @@ if os.getenv("DEBUG"):
     import pdb
 
 ''' common infrastructure that helps the logic of the api '''
-# pdb.set_trace()
 
 
 def largest_palindrome(phrase):

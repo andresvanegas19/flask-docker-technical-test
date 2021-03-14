@@ -57,6 +57,10 @@ paths:
           schema:
             $ref: "#/definitions/Auth_validate"
       responses:
+        "200":
+          description: "Success when it create a new user"
+          schema:
+            $ref: "#/definitions/Auth_validate"
         "400":
           description: "Missing emai or password"
         "401":
@@ -81,10 +85,13 @@ paths:
           required: true
           type: string
       responses:
+        "200":
+          description: "return the token"
+          schema:
+            $ref: "#/definitions/Token"
         "400":
-          description: "Missing emai or password"
-        "401":
-          description: "Error creating user"
+          description: "The user is not register"
+
       security:
         - auth:
             - "read:output"
@@ -139,10 +146,10 @@ paths:
           description: "Success response"
           schema:
             $ref: "#/definitions/Palindrome"
+        "422":
+          description: "missing the palindrome value"
         "400":
           description: "Missing emai or password"
-        "401":
-          description: "Error creating user"
       security:
         - auth:
             - "read:output"
@@ -167,23 +174,26 @@ definitions:
     properties:
       Message:
         type: "string"
-        example: "Successfully create user {TOKEN}"
+        example: "Successfully create usmtpZCI6IjQ4OTQ5ZDdkNDA3ZmVjOWIyYW"
+  Token:
+    type: "object"
+    properties:
+      Message:
+        type: "string"
+        example:
+          {
+            "token": "GciOiJSUzI1NiIsImtpZCI6IjQ4OTQ5ZDdkNDA3ZmVjOWIyYWM4ZDYzNWVjYmEwYjdhOTE0ZWQ4ZmIiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vcHl0aG9uLWF1dGgtMTVjMjAiLCJhdWQiOiJweXRob24tYXV0aC0xNWMyMCIsImF1dGhfdGltZSI6MTYxNTc0NjA4NCwidIaO9COFWqmpjMnzhEuY0Q2BlDrBGZQLZ6MP-Wa091HpB-5vMnA1WERIWTZunRt7iSw5pcCpyJWOH0A3MPSXTB7k_gR-p6jCLZNFA6mWYqHwU_M9o1ZuFvUkZbgaZJgUaGO6nob2mu4U7Uws33oEPX99u-xn85A9e4mKGcWx10dB1kG539UjNvieSx339-8ENm__dmoxugqAv9H-PnngE3IaXV4oUdON626XMxQ",
+          }
   History:
     type: "object"
     properties:
       Message:
         example:
-          ["palindrome word pama => ama", "palindrome word pesep => pesep"]
-  ApiResponse:
-    type: "object"
-    properties:
-      code:
-        type: "integer"
-        format: "int32"
-      type:
-        type: "string"
-      message:
-        type: "string"
+          {
+            "0": "l",
+            "1": "palindrome word 33 => 33",
+            "2": "palindrome word wordrow => wordrow",
+          }
 
 externalDocs:
   description: "Find out more about Swagger"

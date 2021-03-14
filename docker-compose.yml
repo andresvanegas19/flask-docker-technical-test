@@ -1,11 +1,8 @@
 version: '3'
 
 services:
-  # cache:
-  #   image: redis
   api:
     build: .
-    # command: python manage.py runserver 0.0.0.0:8000
     command: init.sh
     volumes:
       - .:/api
@@ -13,5 +10,3 @@ services:
       [5000:5000]
     env_file:
       - ./src/.env
-    # depends_on:
-    #   - cache
