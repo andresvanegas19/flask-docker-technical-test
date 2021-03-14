@@ -11,7 +11,6 @@ app = Flask(__name__)
 # initiating connection with redis
 drive_redis.init_app(app)
 
-drive_redis.get_db().set("l", "p")
 # initiating connection with firebase
 firebase.init_app(app)
 
